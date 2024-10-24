@@ -1,1 +1,89 @@
-node_modules
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs
+*.log
+*.log.*
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Bower dependency directory
+bower_components/
+
+# Build directories
+dist/
+build/
+out/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory
+coverage/
+
+# Ignore .env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# MacOS
+.DS_Store
+
+# IDE files (e.g., JetBrains, VSCode)
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore Yarn & Pnpm lockfiles
+.pnp/
+.pnp.js
+
+# Ignore parcel-bundler cache
+.cache/
+
+# Ignore next.js build output
+.next/
+
+# Ignore Nuxt.js build output
+.nuxt/
+
+# Ignore gatsby files
+.cache/
+
+# Ignore storybook files
+.storybook-out/
+
+# Ignore eslint cache
+.eslintcache
+
+# Ignore local history files
+.history/
+
+# Ignore VS Code workspace settings
+.vscode/
+
+# Ignore editor temporary files
+*.swp
+*.swo

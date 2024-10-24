@@ -1,50 +1,56 @@
-import React, { useState } from "react";
-import CSVUploader from "./components/CSVUploader";
-import EmailTemplateEditor from "./components/EmailTemplateEditor";
-import EmailPreviewer from "./components/EmailPreviewer";
-import Handlebars from "handlebars";
+import logo from './logo.svg';
+import './App.css';
+import React, { useState } from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import FileUpload from './components/FileUpload';
+import RecipientsList from './components/RecipientsList';
+import TemplatesList from './components/TemplatesList';
+import TemplateEditor from './components/TemplateEditor';
+import GenerationButtons from './components/GenerationButtons';
+import EmailPreview from './components/EmailPreview';
 
-const App = () => {
-  const [csvData, setCsvData] = useState([]);
-  const [headers, setHeaders] = useState([]);
-  const [emailTemplate, setEmailTemplate] = useState("");
-  const [generatedEmails, setGeneratedEmails] = useState([]);
+function App() {
 
-  const handleDataParsed = ({ data, headers }) => {
-    setCsvData(data);
-    setHeaders(headers);
-    setGeneratedEmails([]);
-    console.log("Parsed Data: ", data);
-    console.log("Headers: ", headers);
-  };
+  const [templates, setTemplates] = useState([
+    { id: 1, name: 'Greetings', content: 'Greetings {{name}}, \nHope everything is going well.\nThe following email is to...\nI look forward to your answer.\nThanks.'}
+  ]);
 
-  const handleTemplateChange = (event) => {
-    setEmailTemplate(event);
-  };
+  const [selectedTemplateId, setSelectedTemplateId] = useState(1);
 
-  const generateEmails = () => {
-    if (!emailTemplate || csvData.length === 0) {
-      alert("Please upload a valid CSV file and create an email template.");
-      return;
-    }
+  const [recipients, setRecipients] = useState([]);
 
-    const template = Handlebars.compile(emailTemplate);
-    const emails = csvData.map((row) => template(row));
-    setGeneratedEmails(emails);
-  };
+  const [previewRecipient, setPreviewRecipient] = useState(null);
+
+  const selectedTemplate = templates.find((template) => template.id === selectedTemplateId);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>PAW MailMerge</h1>
-      <CSVUploader onDataParsed={handleDataParsed} />
-      <EmailTemplateEditor
-        headers={headers}
-        onTemplateChange={handleTemplateChange}
-      />
-      <button onClick={generateEmails}>Generate Emails</button>
-      <EmailPreviewer generatedEmails={generatedEmails} />
+    
+    <div className="App">
+      <Header></Header>
+      <FileUpload></FileUpload>
+      {/* <TemplatesList></TemplatesList> */}
+      <TemplateEditor></TemplateEditor>
+      {/* <RecipientsList></RecipientsList> */}
+      <EmailPreview></EmailPreview>
+      <GenerationButtons></GenerationButtons>
+      {/* <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header> */}
+      {/* <Footer></Footer> */}
     </div>
   );
-};
+}
 
 export default App;
