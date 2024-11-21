@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import React, { useState } from "react";
 import { jsPDF } from "jspdf";
@@ -12,9 +11,7 @@ import GenerationButtons from "./components/GenerationButtons";
 import EmailPreview from "./components/EmailPreview";
 
 function App() {
-  const [csvData, setCsvData] = useState([]);
   const [headers, setHeaders] = useState([]);
-  const [generatedEmails, setGeneratedEmails] = useState([]);
   const [templates, setTemplates] = useState([
     {
       id: 1,
@@ -43,7 +40,6 @@ function App() {
       });
       return { email: recipient.email, content: replacedContent };
     });
-    setGeneratedEmails(emails);
     return emails;
   };
 
@@ -89,10 +85,8 @@ function App() {
   };
 
   const handleDataParsed = ({ data, headers }) => {
-    setCsvData(data);
     setRecipients(data);
     setHeaders(headers);
-    setGeneratedEmails([]);
   };
 
   const handleAddTemplate = () => {
