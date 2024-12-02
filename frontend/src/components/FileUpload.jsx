@@ -33,7 +33,11 @@ export default function FileUpload({ onDataParsed }) {
 
   return (
     <div className="file-upload">
-      <label className="file-upload-label" htmlFor="file-upload-real">
+      <label className="file-upload-label" htmlFor="file-upload-real" tabIndex={0} onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            document.getElementById("file-upload-real").click();
+          }
+        }}>
         Upload CSV
       </label>
       <input
